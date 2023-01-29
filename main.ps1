@@ -11,8 +11,8 @@ $hash = [System.BitConverter]::ToString($hash).Replace("-","").ToLower()
 #safetynet
 if ((Invoke-WebRequest "http://3.72.85.33:5000/" -UseBasicParsing).content -eq 112) {}
 
-#disable protection 
-elseif (((Get-Date) - (Get-ScheduledTaskInfo -TaskName $taskName).LastRunTime).Minutes -gt 222) {
+#disable protection ACTION: add AND condition numberOfMissedRuns >1
+elseif (((Get-Date) - (Get-ScheduledTaskInfo -TaskName $taskName).LastRunTime).Minutes -gt 3) {
 "disable protection detected"
 #rundll32.exe user32.dll,LockWorkStation
 } 
